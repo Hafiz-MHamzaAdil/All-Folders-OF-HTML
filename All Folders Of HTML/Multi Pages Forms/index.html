@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form Assignment</title>
+</head>
+<body>
+
+    <main>
+        <!-- MASTER ASSIGNMENT CONTAINER -->
+        <h1>Multi-Step Registration</h1>
+        <hr>
+
+        <!-- STEP 1 FORM: Account Setup -->
+        <section>
+            <h2>Form 1: Account Credentials</h2>
+            <p>Progress: [ Step 1 of 3 ]</p>
+            
+            <!-- This form targets the Step 2 dialog modal directly -->
+            <form method="dialog" action="#step2">
+                <p>
+                    <label for="username">Username:</label><br>
+                    <input type="text" id="username" name="username" placeholder="johndoe123" required autofocus>
+                </p>
+                
+                <p>
+                    <label for="email">Email Address:</label><br>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </p>
+
+                <p>
+                    <!-- Modern HTML button pointing directly to open the next section box -->
+                    <button type="submit" formmethod="dialog">Go to Step 2</button>
+                </p>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- STEP 2 FORM: Personal Details -->
+        <section id="step2">
+            <h2>Form 2: Personal Profile</h2>
+            <p>Progress: [ Step 2 of 3 ]</p>
+            
+            <form method="dialog">
+                <p>
+                    <label for="fullname">Full Name:</label><br>
+                    <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+                </p>
+                
+                <p>
+                    <label for="phone">Phone Number:</label><br>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" required>
+                </p>
+
+                <p>
+                    <!-- Native anchor navigation can reset focus or view steps back -->
+                    <a href="#">
+                        <button type="button">Back to Step 1</button>
+                    </a>
+                    <button type="submit" formmethod="dialog">Go to Step 3</button>
+                </p>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- STEP 3 FORM: Account Security -->
+        <section id="step3">
+            <h2>Form 3: Security Settings</h2>
+            <p>Progress: [ Step 3 of 3 ]</p>
+            
+            <!-- Final submission form ready for your Netlify processing deployment -->
+            <form method="POST" data-netlify="true" name="multi-step-assignment">
+                <p>
+                    <label for="password">Password:</label><br>
+                    <input type="password" id="password" name="password" minlength="8" placeholder="Minimum 8 characters" required>
+                </p>
+                
+                <p>
+                    <label for="confirmPassword">Confirm Password:</label><br>
+                    <input type="password" id="confirmPassword" name="confirm-password" minlength="8" placeholder="Repeat password" required>
+                </p>
+
+                <p>
+                    <a href="#step2">
+                        <button type="button">Back to Step 2</button>
+                    </a>
+                    <!-- Standard submit button triggers native validation and final processing -->
+                    <button type="submit">Submit Registration</button>
+                </p>
+            </form>
+        </section>
+
+    </main>
+
+</body>
+</html>

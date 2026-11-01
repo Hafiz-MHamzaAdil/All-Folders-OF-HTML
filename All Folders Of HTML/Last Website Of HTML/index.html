@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>last website</title>
+</head>
+<body>
+
+    <!-- 1. HEADER SECTON -->
+    <header>
+        <!-- HTML align attribute centers the text directly -->
+        <h1 align="center">last website</h1>
+        <p align="center">A clean layout demonstrating fundamental HTML structure and text elements.</p>
+        
+        <nav>
+            <p align="center">
+                <a href="#text-section">Text</a> | 
+                <a href="#media-section">Media</a> | 
+                <a href="#table-section">Tables</a> | 
+                <a href="#form-section">Forms</a>
+            </p>
+        </nav>
+    </header>
+
+    <hr>
+
+    <main>
+        <!-- 2. TEXT SECTION -->
+        <section id="text-section">
+            <h2 align="center">1. Text Formatting</h2>
+            
+            <h3>Standard Headings</h3>
+            <h4>Sub-heading Level 4</h4>
+            <h5>Sub-heading Level 5</h5>
+            <h6>Sub-heading Level 6</h6>
+
+            <p>This is a regular paragraph featuring <strong>strong bold text</strong>, <em>emphasized italics</em>, and a bright <mark>highlighted phrase</mark>.</p>
+            
+            <p>You can also display <small>small print text</small>, <del>deleted crossouts</del>, <ins>underlined additions</ins>, or <s>strikethroughs</s>.</p>
+            
+            <p>Write math variables like <var>x</var><sup>2</sup> or chemical elements like H<sub>2</sub>O seamlessly.</p>
+            
+            <p>Hovering over an abbreviation like <abbr title="HyperText Markup Language">HTML</abbr> reveals a tooltip. Book titles use the <cite>Citation Tag</cite>.</p>
+            
+            <blockquote>
+                "This blockquote handles longer multi-line phrases nicely pulled from third-party sources."
+            </blockquote>
+
+            <p>The browser automatically wraps a <q>short inline quote</q> with physical quotation symbols.</p>
+            
+            <p>Display computer keys like <kbd>Ctrl</kbd> + <kbd>C</kbd>, standard code snippets like <code>print()</code>, or terminal outputs like <samp>Error 404</samp>.</p>
+
+            <h3>Preformatted Code Block</h3>
+            <pre>
+function greetUser() {
+    console.log("Welcome to last website!");
+}
+            </pre>
+
+            <h3>Unordered, Ordered, and Description Lists</h3>
+            <ul>
+                <li>Bullet list point</li>
+                <li>Bullet list point</li>
+            </ul>
+
+            <ol>
+                <li>Numbered step one</li>
+                <li>Numbered step two</li>
+            </ol>
+
+            <dl>
+                <dt>HTML Term</dt>
+                <dd>Defines basic web page layout markup.</dd>
+                <dt>CSS Term</dt>
+                <dd>Handles layout coloring and backgrounds.</dd>
+            </dl>
+        </section>
+
+        <hr>
+
+        <!-- 3. MULTIMEDIA SECTION -->
+        <section id="media-section">
+            <h2 align="center">2. Multimedia & Images</h2>
+            
+            <figure>
+                <picture>
+                    <source srcset="https://placeholder.com" type="image/webp">
+                    <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGljfGVufDB8fDB8fHww" alt="Sample Display Placeholder Image" loading="lazy">
+                </picture>
+                <figcaption>Figure 1: Standard layout responsive image fallbacks.</figcaption>
+            </figure>
+
+            <h3>Audio Controls</h3>
+            <audio controls>
+                <source src="audio.mp3" type="audio/mpeg">
+                Your browser does not support the audio player.
+            </audio>
+
+            <h3>Video Controls</h3>
+            <video controls width="320">
+                <source src="video.mp4" type="video/mp4">
+                <track kind="captions" src="subtitles.vtt" srclang="en" label="English">
+                Your browser does not support the video player.
+            </video>
+
+            <h3>Embedded Vector & Frame Blocks</h3>
+            <iframe src="about:blank" title="Demo Frame" width="100%" height="80"></iframe>
+            
+            <br><br>
+            <svg width="60" height="60">
+                <circle cx="30" cy="30" r="25" stroke="black" stroke-width="2" fill="red" />
+            </svg>
+        </section>
+
+        <hr>
+
+        <!-- 4. TABLES SECTION -->
+        <section id="table-section">
+            <h2 align="center">3. Simple Data Tables</h2>
+            <table border="1" width="100%">
+                <caption>Weekly Balance Spreadsheet</caption>
+                <thead>
+                    <tr>
+                        <th>Day Of Week</th>
+                        <th>Income Stream</th>
+                        <th>Outcome Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Monday</td>
+                        <td>$450.00</td>
+                        <td>$120.00</td>
+                    </tr>
+                    <tr>
+                        <td>Tuesday</td>
+                        <td>$380.00</td>
+                        <td>$95.00</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total Summary</td>
+                        <td>$830.00</td>
+                        <td>$215.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </section>
+
+        <hr>
+
+        <!-- 5. FORMS SECTION -->
+        <section id="form-section">
+            <h2 align="center">4. Interactive Input Forms</h2>
+            <form action="#" method="get">
+                
+                <fieldset>
+                    <legend>Account Profiles</legend>
+                    <p>
+                        <label for="user">Profile Username:</label>
+                        <input type="text" id="user" name="user" required placeholder="Type name here">
+                    </p>
+                    <p>
+                        <label for="pass">Secret Password:</label>
+                        <input type="password" id="pass" name="pass" required>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Data Selection Parameters</legend>
+                    <p>
+                        <label for="mail">Email Box:</label>
+                        <input type="email" id="mail" name="mail">
+                    </p>
+                    <p>
+                        <label for="phone">Phone Line:</label>
+                        <input type="tel" id="phone" name="phone">
+                    </p>
+                    <p>
+                        <label for="qty">Quantity Counter:</label>
+                        <input type="number" id="qty" name="qty" min="1" max="5">
+                    </p>
+                    <p>
+                        <label for="scale">Slide Scale Volume:</label>
+                        <input type="range" id="scale" name="scale">
+                    </p>
+                    <p>
+                        <label for="date">Calendar Date Selection:</label>
+                        <input type="date" id="date" name="date">
+                    </p>
+                    <p>
+                        <label for="color">Color Palette Tool:</label>
+                        <input type="color" id="color" name="color" value="#0000ff">
+                    </p>
+                    <p>
+                        <label for="upload">Select Storage File Attachment:</label>
+                        <input type="file" id="upload" name="upload">
+                    </p>
+                    <p>
+                        <label for="search-engine">Select Preferred Browser Engine:</label>
+                        <input list="browsers" id="search-engine" name="search-engine">
+                        <datalist id="browsers">
+                            <option value="Chromium Base">
+                            <option value="Gecko Firefox">
+                            <option value="WebKit Safari">
+                        </datalist>
+                    </p>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Checkbox & Select Choice Groups</legend>
+                    <p>
+                        <label for="menu">Dropdown Options:</label>
+                        <select id="menu" name="menu">
+                            <optgroup label="Coding Core">
+                                <option value="dev">Software Engineering</option>
+                            </optgroup>
+                        </select>
+                    </p>
+                    <p>
+                        Radio Options Toggle:<br>
+                        <input type="radio" id="rad1" name="rad-group" value="yes" checked>
+                        <label for="rad1">Option Yes</label><br>
+                        <input type="radio" id="rad2" name="rad-group" value="no">
+                        <label for="rad2">Option No</label>
+                    </p>
+                    <p>
+                        Checkbox Checkboxes:<br>
+                        <input type="checkbox" id="box1" name="box-group" checked>
+                        <label for="box1">Agree to system policies</label>
+                    </p>
+                    <p>
+                        <label for="msg">Text Area Field Container:</label><br>
+                        <textarea id="msg" name="msg" rows="3" cols="30" placeholder="Type comments..."></textarea>
+                    </p>
+                </fieldset>
+
+                <br>
+                <button type="submit">Submit Form</button>
+                <button type="reset">Reset Form</button>
+            </form>
+        </section>
+
+        <hr>
+
+        <!-- 6. DYNAMIC UI WIDGETS SECTION -->
+        <section>
+            <h2 align="center">5. Dynamic Web Elements</h2>
+            
+            <details>

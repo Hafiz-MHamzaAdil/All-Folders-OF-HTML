@@ -1,0 +1,13 @@
+print("Hello World!")
+
+local first_name = "Ayan"
+local last_name = "Hussain"
+
+--print (first_name)
+print("First Name:"  .. first_name)
+print("Last Name:" .. last_name)
+
+print (max_score = 10)
+print (min_score = 0)
+print("Max score :" .. max_score)
+print ("Min Score:" .. minscore)

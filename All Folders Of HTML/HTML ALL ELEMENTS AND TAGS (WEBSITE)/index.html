@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hafiz.com | Creative Portfolio</title>
+    <style>
+        /* --- MODERN STYLING SYSTEM --- */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --primary: #3b82f6;
+            --accent: #10b981;
+            --text-white: #f8fafc;
+            --text-gray: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-white);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        /* --- STICKY NAVIGATION --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.9);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-white);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-box {
+            max-width: 800px;
+        }
+
+        .hero-box h1 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-box h1 span {
+            color: var(--primary);
+        }
+
+        .hero-box p {
+            color: var(--text-gray);
+            font-size: clamp(16px, 2vw, 20px);
+            margin-bottom: 35px;
+        }
+
+        .cta-btn {
+            background-color: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .cta-btn:hover {
+            background-color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* --- PORTFOLIO GALLERY SECTION --- */
+        .portfolio {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .work-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .work-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Pure CSS Placeholder Graphics instead of broken image URLs */
+        .card-graphic {
+            height: 200px;
+            background: linear-gradient(135deg, #1e1b4b, #311042);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .graphic-2 { background: linear-gradient(135deg, #064e3b, #022c22); }
+        .graphic-3 { background: linear-gradient(135deg, #1e3a8a, #172554); }
+
+        .card-info {
+            padding: 25px;
+        }
+
+        .card-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card-info p {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* --- DYNAMIC ALERT MESSAGE --- */
+        .status-banner {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: bottom 0.4s ease;
+            z-index: 2000;
+        }
+
+        .status-banner.show {
+            bottom: 30px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-gray);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 60px;
+            font-size: 14px;
+        }
+
+        /* --- MOBILE RESPONSIVE QUERIES --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 79px;
+                left: 0;
+                width: 100%;
+                background-color: var(--bg-color);
+                padding: 30px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <a href="#" class="logo">Hafiz<span>.com</span></a>
+        <ul class="nav-links" id="menu-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#work">Our Work</a></li>
+        </ul>
+        <button class="menu-btn" id="menu-trigger">☰</button>
+    </nav>
+
+    <!-- HERO SPLASH SECTION -->
+    <header id="home" class="hero">
+        <div class="hero-box">
+            <h1>We Build <span>Digital Products</span> That Move Markets</h1>
+            <p>High-end modern engineering, custom clean user interfaces, and custom web development strategies scaled for speed.</p>
+            <button class="cta-btn" id="trigger-alert">Initialize Journey</button>
+        </div>
+    </header>
+
+    <!-- PORTFOLIO SECTION -->
+    <section id="work" class="portfolio">
+        <h2 class="section-title">Recent Showcases</h2>
+        <div class="gallery-grid">
+            <div class="work-card">
+                <div class="card-graphic">💻</div>
+                <div class="card-info">
+                    <h3>E-Commerce Core</h3>
+                    <p>High-speed structural shopping layout optimized for instant global processing speeds.</p>
+                </div>
+            </div>
+            <div class="work-card">
+                <div class="card-graphic graphic-2">📊</div>
+                <div class="card-info">
+                    <h3>Analytics Dashboard</h3>
+                    <p>Real-time telemetry application processing complex live user data tracking securely.</p>
+                </div>
+            </div>
+            <div class="work-card">
+                <div class="card-graphic graphic-3">📱</div>
+                <div class="card-info">
+                    <h3>Fintech Interface</h3>
+                    <p>Minimalist crypto and banking software system built for safe personal financial management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POPUP STATUS BANNER -->
+    <div class="status-banner" id="alert-banner">
+        Connection Successful! Welcome to Hafiz.com
+    </div>
+
+    <!-- REAR ARCHITECTURE FOOTER -->
+    <footer>
+        <p>&copy; 2026 Hafiz.com. Built clean without external asset requests.</p>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Mobile Menu Drawer Toggle
+        const menuTrigger = document.getElementById('menu-trigger');
+        const menuList = document.getElementById('menu-list');
+
+        menuTrigger.addEventListener('click', () => {
+            menuList.classList.toggle('open');
+        });
+
+        // Close mobile drawer upon choosing a layout anchor target link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuList.classList.remove('open');
+            });
+        });
+
+        // 2. Modern Banner Notification System
+        const triggerAlert = document.getElementById('trigger-alert');
+        const alertBanner = document.getElementById('alert-banner');
+
+        triggerAlert.addEventListener('click', () => {
+            alertBanner.classList.add('show');
+            
+            // Automatically hide banner notification window after 3.5 seconds
+            setTimeout(() => {
+                alertBanner.classList.remove('show');
+            }, 3500);
+        });
+    </script>
+</body>
+</html>

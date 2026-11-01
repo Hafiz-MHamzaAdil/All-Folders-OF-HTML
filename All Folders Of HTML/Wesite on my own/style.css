@@ -1,0 +1,13 @@
+h1{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: beige;
+    font-style: oblique;
+    font-display: fallback;
+    text-align: center;
+}
+
+p{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    background-color: brown;
+}

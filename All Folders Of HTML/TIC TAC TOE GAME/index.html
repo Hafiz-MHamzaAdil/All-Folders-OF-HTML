@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Tic Tac Toe Pro</title>
+    <style>
+        :root {
+            --bg-color: #0d0e12;
+            --panel-color: #15161e;
+            --border-color: #242634;
+            --cyan: #00f3ff;
+            --pink: #ff0055;
+            --text: #ffffff;
+            --muted: #6b7280;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .wrapper {
+            background-color: var(--panel-color);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        .status-hud {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            margin-bottom: 25px;
+        }
+        .square {
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            font-size: 2.8rem;
+            font-weight: 900;
+            cursor: pointer;
+            color: var(--text);
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .square:hover {
+            background-color: #1a1b26;
+            border-color: #3b3d54;
+        }
+        .reset-btn {
+            background-color: var(--bg-color);
+            color: var(--text);
+            border: 1px solid var(--border-color);
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        .reset-btn:hover {
+            background-color: #1a1b26;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <h1>Tic Tac Toe</h1>
+        <!-- Fallback baseline elements directly manipulated via standard global scope window properties -->
+        <div class="status-hud" id="hud">Turn: <span id="lbl" style="color:var(--cyan)">X</span></div>
+
+        <div class="grid">
+            <button class="square" id="b0" onclick="window.playMove(0, this)"></button>
+            <button class="square" id="b1" onclick="window.playMove(1, this)"></button>
+            <button class="square" id="b2" onclick="window.playMove(2, this)"></button>
+            <button class="square" id="b3" onclick="window.playMove(3, this)"></button>
+            <button class="square" id="b4" onclick="window.playMove(4, this)"></button>
+            <button class="square" id="b5" onclick="window.playMove(5, this)"></button>
+            <button class="square" id="b6" onclick="window.playMove(6, this)"></button>
+            <button class="square" id="b7" onclick="window.playMove(7, this)"></button>
+            <button class="square" id="b8" onclick="window.playMove(8, this)"></button>
+        </div>
+
+        <button class="reset-btn" onclick="window.rebootGame()">Reset Board</button>
+    </div>
+
+    <script>
+        // Enforcing direct window scope properties completely prevents script mounting or blocking errors
+        window.pTurn = "X";
+        window.isLive = true;
+        
+        window.m0 = ""; window.m1 = ""; window.m2 = "";
+        window.m3 = ""; window.m4 = ""; window.m5 = "";
+        window.m6 = ""; window.m7 = ""; window.m8 = "";
+
+        window.evalLine = function(x, y, z) {
+            return (x !== "" && x === y && y === z);
+        };
+
+        window.checkGrid = function() {
+            let win = false;
+            if (window.evalLine(window.m0, window.m1, window.m2)) win = true;
+            if (window.evalLine(window.m3, window.m4, window.m5)) win = true;
+            if (window.evalLine(window.m6, window.m7, window.m8)) win = true;
+            if (window.evalLine(window.m0, window.m3, window.m6)) win = true;
+            if (window.evalLine(window.m1, window.m4, window.m7)) win = true;
+            if (window.evalLine(window.m2, window.m5, window.m8)) win = true;
+            if (window.evalLine(window.m0, window.m4, window.m8)) win = true;
+            if (window.evalLine(window.m2, window.m4, window.m6)) win = true;
+
+            if (win) {
+                document.getElementById("hud").innerHTML = "Player " + window.pTurn + " Wins!";
+                window.isLive = false;
+                return true;
+            }
+
+            if (window.m0 !== "" && window.m1 !== "" && window.m2 !== "" && window.m3 !== "" && window.m4 !== "" && window.m5 !== "" && window.m6 !== "" && window.m7 !== "" && window.m8 !== "") {
+                document.getElementById("hud").innerHTML = "Match Draw!";
+                window.isLive = false;
+                return true;
+            }
+            return false;
+        };
+
+        window.playMove = function(index, targetButton) {
+            if (!window.isLive || targetButton.innerText !== "") return;
+
+            targetButton.innerText = window.pTurn;
+            targetButton.style.color = window.pTurn === "X" ? "var(--cyan)" : "var(--pink)";
+            targetButton.style.textShadow = window.pTurn === "X" ? "0 0 10px rgba(0,243,255,0.4)" : "0 0 10px rgba(255,0,85,0.4)";
+
+            if (index === 0) window.m0 = window.pTurn;
+            if (index === 1) window.m1 = window.pTurn;
+            if (index === 2) window.m2 = window.pTurn;
+            if (index === 3) window.m3 = window.pTurn;
+            if (index === 4) window.m4 = window.pTurn;
+            if (index === 5) window.m5 = window.pTurn;
+            if (index === 6) window.m6 = window.pTurn;
+            if (index === 7) window.m7 = window.pTurn;
+            if (index === 8) window.m8 = window.pTurn;
+
+            if (window.checkGrid()) return;
+
+            window.pTurn = window.pTurn === "X" ? "O" : "X";
+            
+            let colorHex = window.pTurn === "X" ? "var(--cyan)" : "var(--pink)";
+            document.getElementById("hud").innerHTML = 'Turn: <span style="color:' + colorHex + '">' + window.pTurn + '</span>';
+        };
+
+        window.rebootGame = function() {
+            window.pTurn = "X";
+            window.isLive = true;
+            window.m0 = ""; window.m1 = ""; window.m2 = "";
+            window.m3 = ""; window.m4 = ""; window.m5 = "";
+            window.m6 = ""; window.m7 = ""; window.m8 = "";
+
+            document.getElementById("hud").innerHTML = 'Turn: <span style="color:var(--cyan)">X</span>';
+
+            for (let i = 0; i < 9; i++) {
+                let btn = document.getElementById("b" + i);
+                btn.innerText = "";
+                btn.style.textShadow = "none";
+            }
+        };
+    </script>
+</body>
+</html>

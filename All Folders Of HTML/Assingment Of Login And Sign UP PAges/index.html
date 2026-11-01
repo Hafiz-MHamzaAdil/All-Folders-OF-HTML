@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure CSS Login & Signup Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <!-- The CSS Magic: A hidden checkbox that tracks which form to show -->
+        <input type="checkbox" id="form-switcher" class="toggle-checkbox">
+
+        <!-- Navigation Labels linked to the checkbox -->
+        <div class="form-toggle">
+            <label for="form-switcher" class="toggle-label login-btn">Log In</label>
+            <label for="form-switcher" class="toggle-label signup-btn">Sign Up</label>
+        </div>
+
+        <!-- Forms Wrapper -->
+        <div class="forms-wrapper">
+            <!-- Login Form -->
+            <form class="form-box login-form">
+                <h2>Welcome Back</h2>
+                <div class="input-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="form-actions">
+                    <label><input type="checkbox"> Remember me</label>
+                    <a href="#">Forgot Password?</a>
+                </div>
+                <button type="submit" class="submit-btn">Log In</button>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="form-box signup-form">
+                <h2>Create Account</h2>
+                <div class="input-group">
+                    <input type="text" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-actions">
+                    <label><input type="checkbox" required> I agree to the Terms</label>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

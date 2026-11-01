@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Gift For You, Dad</title>
+    <style>
+        /* ==========================================================
+           1. LUXURY THEMING & RESET
+           ========================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        body {
+            background-color: #0f172a; /* Deep midnight blue */
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* Subtle glowing background circles */
+        .ambient-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(234, 179, 8, 0.08) 0%, transparent 70%);
+            top: 10%;
+            left: 10%;
+            pointer-events: none;
+        }
+
+        /* ==========================================================
+           2. THE GIFT ENVELOPE CONTAINER
+           ========================================================== */
+        .gift-container {
+            width: 100%;
+            max-width: 600px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 2px solid #eab308; /* Gold border */
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(234, 179, 8, 0.2);
+            transition: all 0.5s ease;
+        }
+
+        .gift-header h1 {
+            font-size: 2.5rem;
+            color: #fef08a; /* Soft gold text */
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .gift-header p {
+            color: #94a3b8;
+            font-style: italic;
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        /* ==========================================================
+           3. INTERACTIVE WAX SEAL BUTTON
+           ========================================================== */
+        .seal-button {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, #facc15 0%, #ca8a04 100%);
+            border-radius: 50%;
+            margin: 0 auto 30px auto;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), inset 0 0 10px rgba(255, 255, 255, 0.5);
+            border: 4px dashed #9a3412;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .seal-button:hover {
+            transform: scale(1.08) rotate(5deg);
+            box-shadow: 0 15px 25px rgba(234, 179, 8, 0.4);
+        }
+
+        /* Crown icon inside the seal */
+        .seal-icon {
+            font-size: 2.5rem;
+            user-select: none;
+        }
+
+        .click-hint {
+            color: #eab308;
+            font-weight: bold;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            animation: pulseText 1.5s infinite alternate;
+        }
+
+        /* ==========================================================
+           4. THE HIDDEN LETTER (Revealed on click)
+           ========================================================== */
+        .letter-content {
+            display: none; /* Hidden by default */
+            background-color: #fffdf5; /* Crisp parchment paper color */
+            color: #1e293b;
+            border-radius: 12px;
+            padding: 35px 25px;
+            margin-top: 30px;
+            text-align: left;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+            border-left: 6px solid #ca8a04;
+            animation: revealLetter 0.6s ease-out forwards;
+        }
+
+        .letter-content h2 {
+            font-size: 1.8rem;
+            color: #0f172a;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+
+        .letter-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-indent: 20px;
+        }
+
+        /* ==========================================================
+           5. PERSONAL GIFT COUPONS
+           ========================================================== */
+        .coupon-title {
+            font-weight: bold;
+            font-size: 1rem;
+            color: #ca8a04;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .coupon-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .coupon-card {
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: #334155;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .coupon-card span {
+            display: block;
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .letter-footer {
+            margin-top: 35px;
+            text-align: right;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        /* ==========================================================
+           6. ANIMATIONS
+           ========================================================== */
+        @keyframes pulseText {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes revealLetter {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 500px) {
+            .coupon-grid { grid-template-columns: 1fr; }
+            .gift-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ambient-glow"></div>
+
+    <!-- Main Gift Frame -->
+    <div class="gift-container">
+        
+        <div class="gift-header" id="envelopeHeader">
+            <h1>To An Incredible Father</h1>
+            <p>A small token of love and appreciation crafted just for you.</p>
+        </div>
+
+        <!-- The Interactive Seal Button -->
+        <div id="sealBtn" class="seal-button" onclick="openGiftLink()">
+            <div class="seal-icon">👑</div>
+        </div>
+        
+        <p id="hintText" class="click-hint">Click Seal to Open</p>
+
+        <!-- The Hidden Letter Blueprint (Edits here change what Dad reads!) -->
+        <div class="letter-content" id="personalLetter">
+            <h2>Happy Father's Day!</h2>
+            
+            <p>Thank you for always being my anchor, my guide, and my biggest supporter. Your quiet sacrifices, endless wisdom, and unmatched patience have shaped exactly who I am today.</p>
+            
+            <p>I am so incredibly proud to be your child. To celebrate today, I have put together a few digital gift tokens for you to cash in with me whenever you like!</p>
+
+            <div class="coupon-title">🎁 Your Redeemable Gift Tokens</div>
+            
+            <!-- Gift Coupons Grid -->
+            <div class="coupon-grid">
+                <div class="coupon-card">
+                    <span>☕</span> One Free Morning Coffee Served to Your Bed
+                </div>
+                <div class="coupon-card">
+                    <span>🚗</span> Full Exterior & Interior Car Wash by Me
+                </div>
+                <div class="coupon-card">
+                    <span>🎬</span> Movie Night (You Pick the Film & Snacks)
+                </div>
+                <div class="coupon-card">
+                    <span>🛋️</span> One Full Day Exempt from Any House Chores
+                </div>
+            </div>
+
+            <div class="letter-footer">
+                With Love Always,<br>
+                <span style="color: #ca8a04;">Your Loving Child</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- UI Router Switch Script -->
+    <script>
+        function openGiftLink() {
+            var letter = document.getElementById('personalLetter');
+            var seal = document.getElementById('sealBtn');
+            var hint = document.getElementById('hintText');
+            
+            // Show the hidden letter
+            letter.style.display = 'block';
+            
+            // Hide the seal button and text smoothly
+            seal.style.display = 'none';
+            hint.style.display = 'none';
+            
+            // Scroll down cleanly to let him read it smoothly
+            letter.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
+    
